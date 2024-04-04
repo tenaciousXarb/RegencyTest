@@ -1,0 +1,174 @@
+USE [master]
+GO
+/****** Object:  Database [RegencyTestDb] ******/
+CREATE DATABASE [RegencyTestDb]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'RegencyTestDb', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\RegencyTestDb.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'RegencyTestDb_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\RegencyTestDb_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [RegencyTestDb] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [RegencyTestDb].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [RegencyTestDb] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [RegencyTestDb] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [RegencyTestDb] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [RegencyTestDb] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [RegencyTestDb] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [RegencyTestDb] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+ALTER DATABASE [RegencyTestDb] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [RegencyTestDb] SET  MULTI_USER 
+GO
+ALTER DATABASE [RegencyTestDb] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [RegencyTestDb] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [RegencyTestDb] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [RegencyTestDb] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [RegencyTestDb] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [RegencyTestDb] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [RegencyTestDb] SET QUERY_STORE = OFF
+GO
+USE [RegencyTestDb]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Classes] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Classes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[CreatedDate] [datetime2](7) NULL,
+	[ModificationDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Classes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Students] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Students](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Gender] [int] NOT NULL,
+	[DOB] [datetime2](7) NOT NULL,
+	[ClassId] [int] NOT NULL,
+	[CreatedDate] [datetime2](7) NULL,
+	[ModificationDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Students] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240403150108_initial', N'6.0.28')
+GO
+SET IDENTITY_INSERT [dbo].[Classes] ON 
+
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (1, N'One', CAST(N'2024-04-03T21:01:08.3600351' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (2, N'Two', CAST(N'2024-04-03T21:01:08.3600373' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (3, N'Three', CAST(N'2024-04-03T21:01:08.3600377' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (4, N'Four', CAST(N'2024-04-03T21:01:08.3600385' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (5, N'Five', CAST(N'2024-04-03T21:01:08.3600388' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (6, N'Six', CAST(N'2024-04-03T21:01:08.3600391' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (7, N'Seven', CAST(N'2024-04-03T21:01:08.3600395' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (8, N'Eight', CAST(N'2024-04-03T21:01:08.3600399' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (9, N'Nine', CAST(N'2024-04-03T21:01:08.3600402' AS DateTime2), NULL)
+INSERT [dbo].[Classes] ([Id], [Name], [CreatedDate], [ModificationDate]) VALUES (10, N'Ten', CAST(N'2024-04-03T21:01:08.3600406' AS DateTime2), NULL)
+SET IDENTITY_INSERT [dbo].[Classes] OFF
+GO
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'1faedb18-a873-4529-8c06-3a0b61d3a1ae', N'Xander', 1, CAST(N'2014-11-27T00:00:00.0000000' AS DateTime2), 2, CAST(N'2024-04-03T21:01:08.3601133' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'ac37cbf6-d842-4ef6-ba73-5cb9739a4219', N'Aysha', 2, CAST(N'2018-04-07T00:00:00.0000000' AS DateTime2), 4, CAST(N'2024-04-03T21:01:08.3601107' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'5fd4d018-805f-400e-8d60-6c38cf97c462', N'John', 1, CAST(N'2010-01-12T00:00:00.0000000' AS DateTime2), 1, CAST(N'2024-04-03T21:01:08.3601070' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'd07eac83-6ec5-4af9-ae2b-6f26a6c3223d', N'Jamie', 1, CAST(N'2012-07-21T00:00:00.0000000' AS DateTime2), 7, CAST(N'2024-04-03T21:01:08.3601086' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'85e9fd7f-f827-404d-aad4-845c69c7e23f', N'Kane', 2, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), 6, CAST(N'2024-04-03T21:01:08.3601172' AS DateTime2), CAST(N'2024-04-03T21:37:03.7438327' AS DateTime2))
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'f4eee102-d6a5-46ae-969c-c2bb4b096c76', N'Maria', 2, CAST(N'2014-05-11T00:00:00.0000000' AS DateTime2), 5, CAST(N'2024-04-03T21:01:08.3601184' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'6ed43c26-c94d-414f-b4b4-c2e6eaa52d57', N'Aaron', 1, CAST(N'2015-10-02T00:00:00.0000000' AS DateTime2), 5, CAST(N'2024-04-03T21:01:08.3601099' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'e9a39d81-a58a-43fc-acb3-cc870791910b', N'Patricia', 2, CAST(N'2014-03-03T00:00:00.0000000' AS DateTime2), 2, CAST(N'2024-04-03T21:01:08.3601160' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'5a446c50-89f3-466b-bba7-e65195eda4b4', N'Kayla', 2, CAST(N'2016-02-22T00:00:00.0000000' AS DateTime2), 8, CAST(N'2024-04-03T21:01:08.3601192' AS DateTime2), NULL)
+INSERT [dbo].[Students] ([Id], [Name], [Gender], [DOB], [ClassId], [CreatedDate], [ModificationDate]) VALUES (N'd8cb8acf-8e1b-4d1b-b8a3-f9e966a55b0f', N'Finch', 1, CAST(N'2020-08-13T00:00:00.0000000' AS DateTime2), 6, CAST(N'2024-04-03T21:01:08.3601120' AS DateTime2), NULL)
+GO
+/****** Object:  Index [IX_Students_ClassId] ******/
+CREATE NONCLUSTERED INDEX [IX_Students_ClassId] ON [dbo].[Students]
+(
+	[ClassId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Students]  WITH CHECK ADD  CONSTRAINT [FK_Students_Classes_ClassId] FOREIGN KEY([ClassId])
+REFERENCES [dbo].[Classes] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Students] CHECK CONSTRAINT [FK_Students_Classes_ClassId]
+GO
+USE [master]
+GO
+ALTER DATABASE [RegencyTestDb] SET  READ_WRITE 
+GO
